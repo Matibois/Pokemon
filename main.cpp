@@ -7,11 +7,11 @@
 
 int main(int argc, char** argv)
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!"); // Création fenetre
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Pokemon Stone"); // Création fenetre
 
     sf::Texture texture;
-    texture.loadFromFile("sprite.jpg"); // Charge l'image dans "texture"
-    sf::IntRect rectSourceSprite(375, 181, 25, 32); // Position du perso dans l'image Sprite.jpg -> IntRect(375, 180, 25, 30)
+    texture.loadFromFile("perso.jpg"); // Charge l'image dans "texture"
+    sf::IntRect rectSourceSprite(77, 37, 25, 32); // Position du perso dans l'image Sprite.jpg -> IntRect(375, 180, 25, 30)
     sf::Sprite perso(texture, rectSourceSprite); // Créer le perso lui applique la texture et 
     /*perso.setTexture(texture);*/
    
@@ -30,10 +30,10 @@ int main(int argc, char** argv)
         }
 
         if (clock.getElapsedTime().asSeconds() > 1.0f) { // Boucle d'animations
-            if (rectSourceSprite.top > 240){
-                rectSourceSprite.top = 181;  // InteRect de base, perso original
+            if (rectSourceSprite.top > 90){
+                rectSourceSprite.top = 37;  // InteRect de base, perso original
             }
-            else if(rectSourceSprite.top == 212) { // Si il a fait un pas alors en fait un deuxieme
+            else if(rectSourceSprite.top == 68) { // Si il a fait un pas alors en fait un deuxieme
                 rectSourceSprite.top += 32; 
             }
             else {
