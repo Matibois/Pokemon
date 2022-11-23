@@ -10,16 +10,16 @@ int main(int argc, char** argv)
     sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!"); // Création fenetre
 
     sf::Texture texture;
-    texture.loadFromFile("sprite.jpg"); // Charge l'image dans "texture"
-    sf::IntRect rectSourceSprite(375, 181, 25, 32); // Position du perso dans l'image Sprite.jpg -> IntRect(375, 180, 25, 30)
-    sf::Sprite perso(texture, rectSourceSprite); // Créer le perso lui applique la texture et 
+    texture.loadFromFile("venusaur.png"); // Charge l'image dans "texture"
+    sf::IntRect rectSourceSprite(252, 251, 54, 54); // Position du perso dans l'image Sprite.jpg -> IntRect(375, 180, 25, 30)
+    sf::Sprite venusaur(texture, rectSourceSprite); // Créer le perso lui applique la texture et 
     /*perso.setTexture(texture);*/
    
 
     sf::Clock clock; // Boucle pour animation
     sf::Event event; // Var temporaire pour event
 
-    perso.setScale(2, 2); // Taille de perso
+    venusaur.setScale(4, 4); // Taille de perso
 
     while (window.isOpen()) // Boucle pour maintenir la fenetre ouverte
     {
@@ -30,22 +30,24 @@ int main(int argc, char** argv)
         }
 
         if (clock.getElapsedTime().asSeconds() > 1.0f) { // Boucle d'animations
-            if (rectSourceSprite.top > 240){
-                rectSourceSprite.top = 181;  // InteRect de base, perso original
+            if (rectSourceSprite.top > 380){
+                rectSourceSprite.top = 251;  // InteRect de base, perso original
             }
-            else if(rectSourceSprite.top == 212) { // Si il a fait un pas alors en fait un deuxieme
-                rectSourceSprite.top += 32; 
+            else if(rectSourceSprite.top == 315) { // Si il a fait un pas alors en fait un deuxieme
+              rectSourceSprite.top += 65; 
             }
             else {
-                rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
+                rectSourceSprite.top += 66; // Change le IntRect pour que perso change de "skin" et face un pas
             }
 
-            perso.setTextureRect(rectSourceSprite); // Donne la nouvelle position a perso
+            venusaur.setTextureRect(rectSourceSprite); // Donne la nouvelle position a perso
             clock.restart(); // Restart clock...?
         }
 
         window.clear();
-        window.draw(perso);
+
+        window.draw(venusaur);
+
         window.display();
     }
 
