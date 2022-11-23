@@ -17,15 +17,11 @@ void move(sf::IntRect rectSourceSprite) {
     else {
         rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
     }
-   
-
-    
-
 }
 
 int main(int argc, char** argv)
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "Pokemon Stone"); // Création fenetre
+    sf::RenderWindow window(sf::VideoMode(771, 432), "Pokemon Stone"); // Création fenetre
 
     sf::Texture texture_Perso;
     sf::Texture texture_Background;
@@ -60,36 +56,36 @@ int main(int argc, char** argv)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) // Event fleche droite appuyé
         {
             right = true;
+
             perso.move(0.2f, 0.f);
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) // Event fleche gauche appuyé
+        }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) // Event fleche gauche appuyé
         {
             left = true;
             perso.move(-0.2f, 0.f);
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) // Event fleche du haut appuyé
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) // Event fleche du haut appuyé
         {
             up = true;
             perso.move(0.f, -0.2f);
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) // Event fleche du bas appuyé
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) // Event fleche du bas appuyé
         {
             down = true;
             perso.move(0.f, 0.2f);
         }
 
-        //if (clock.getElapsedTime().asSeconds() > 0.6f) { // Boucle d'animations
-        //    if (down){
-        //        if (rectSourceSprite.top > 90) {
-        //            rectSourceSprite.top = 37;  // InteRect de base, perso original
-        //        }
-        //        else if (rectSourceSprite.top == 68) { // Si il a fait un pas alors en fait un deuxieme
-        //            rectSourceSprite.top += 32;
-        //        }
-        //        else {
-        //            rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
-        //        }
-        //    }
+        if (clock.getElapsedTime().asSeconds() > 0.6f) { // Boucle d'animations
+            //if (down){
+                if (rectSourceSprite.top > 90) {
+                    rectSourceSprite.top = 37;  // InteRect de base, perso original
+                }
+                else if (rectSourceSprite.top == 68) { // Si il a fait un pas alors en fait un deuxieme
+                    rectSourceSprite.top += 32;
+                }
+                else {
+                    rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
+                }
+            //}
         //    if (up) {
         //        if (rectSourceSprite.top > 90) {
         //            rectSourceSprite.top = 37;  // InteRect de base, perso original
@@ -124,9 +120,9 @@ int main(int argc, char** argv)
         //        }
         //    }
         //    //animation(rectSourceSprite);
-        //    perso.setTextureRect(rectSourceSprite); // Donne la nouvelle position a perso
-        //    clock.restart(); // Restart clock...?
-        //}
+            perso.setTextureRect(rectSourceSprite); // Donne la nouvelle position a perso
+            clock.restart(); // Restart clock...?
+        }
        
        
 
