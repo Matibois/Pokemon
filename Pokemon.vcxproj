@@ -134,12 +134,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="anime.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main_1.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Venusaur.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="anime.h" />
-    <ClInclude Include="init.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Venusaur.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Entity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

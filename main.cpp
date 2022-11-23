@@ -1,9 +1,7 @@
-#include <SFML/Graphics.hpp>
+/*#include <SFML/Graphics.hpp>
 #include <thread>
 #include <chrono>
 #include <iostream>
-#include "init.h"
-
 
 int main(int argc, char** argv)
 {
@@ -13,7 +11,7 @@ int main(int argc, char** argv)
     texture.loadFromFile("venusaur.png"); // Charge l'image dans "texture"
     sf::IntRect rectSourceSprite(252, 251, 54, 54); // Position du perso dans l'image Sprite.jpg -> IntRect(375, 180, 25, 30)
     sf::Sprite venusaur(texture, rectSourceSprite); // Créer le perso lui applique la texture et 
-    /*perso.setTexture(texture);*/
+    /*perso.setTexture(texture);
    
 
     sf::Clock clock; // Boucle pour animation
@@ -52,4 +50,4 @@ int main(int argc, char** argv)
     }
 
     return 0;
-}
+}*/
