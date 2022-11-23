@@ -138,7 +138,6 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Main_1.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Venusaur.cpp" />
   </ItemGroup>
