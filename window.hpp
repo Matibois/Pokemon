@@ -2,8 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <iostream>
 
 class manage_window
 {

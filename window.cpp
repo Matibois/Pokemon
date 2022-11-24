@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "song.hpp"
 
 manage_window::manage_window() : window(sf::VideoMode(800, 600), "Pokemon")
 {
@@ -35,16 +36,13 @@ void manage_window::display_window(void)
 void open_close_window()
 {
     manage_window w;
-    sf::Music music;
+    Musique m;
 
-    music.openFromFile("song.ogg");
-    music.setLoop(true);
-    music.play();
+    m.song_menu_principal();
     while (w.isOpen())
     {
         w.clear_window();
         w.manage_event();
         w.display_window();
     }
-
 }
