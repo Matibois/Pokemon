@@ -56,81 +56,92 @@ int main(int argc, char** argv)
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) // Event fleche droite appuyé
         {
             right = true;
-
-            perso.move(0.2f, 0.f);
-        }else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) // Event fleche gauche appuyé
+            up = false;
+            down = false;
+            left = false;
+            perso.move(0.1f, 0.f);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) // Event fleche gauche appuyé
         {
+            right = false;
+            up = false;
+            down = false;
             left = true;
-            perso.move(-0.2f, 0.f);
+            perso.move(-0.1f, 0.f);
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) // Event fleche du haut appuyé
         {
+            right = false;
             up = true;
-            perso.move(0.f, -0.2f);
+            down = false;
+            left = false;
+            perso.move(0.f, -0.1f);
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) // Event fleche du bas appuyé
         {
+            right = false;
+            up = false;
             down = true;
-            perso.move(0.f, 0.2f);
+            left = false;
+            perso.move(0.f, 0.1f);
         }
 
         if (clock.getElapsedTime().asSeconds() > 0.6f) { // Boucle d'animations
-            //if (down){
-                if (rectSourceSprite.top > 90) {
-                    rectSourceSprite.top = 37;  // InteRect de base, perso original
-                }
-                else if (rectSourceSprite.top == 68) { // Si il a fait un pas alors en fait un deuxieme
-                    rectSourceSprite.top += 32;
+            if (down) {
+                rectSourceSprite.top = 68;
+                rectSourceSprite.left = 77;
+                if (rectSourceSprite.top == 99) { // Si il a fait un pas alors en fait un deuxieme
+                    rectSourceSprite.top = 68;
                 }
                 else {
                     rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
                 }
-            //}
-        //    if (up) {
-        //        if (rectSourceSprite.top > 90) {
-        //            rectSourceSprite.top = 37;  // InteRect de base, perso original
-        //        }
-        //        else if (rectSourceSprite.top == 68) { // Si il a fait un pas alors en fait un deuxieme
-        //            rectSourceSprite.top += 32;
-        //        }
-        //        else {
-        //            rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
-        //        }
-        //    }
-        //    if (right) {
-        //        if (rectSourceSprite.top > 90) {
-        //            rectSourceSprite.top = 37;  // InteRect de base, perso original
-        //        }
-        //        else if (rectSourceSprite.top == 68) { // Si il a fait un pas alors en fait un deuxieme
-        //            rectSourceSprite.top += 32;
-        //        }
-        //        else {
-        //            rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
-        //        }
-        //    }
-        //    if (left) {
-        //        if (rectSourceSprite.top > 90) {
-        //            rectSourceSprite.top = 37;  // InteRect de base, perso original
-        //        }
-        //        else if (rectSourceSprite.top == 68) { // Si il a fait un pas alors en fait un deuxieme
-        //            rectSourceSprite.top += 32;
-        //        }
-        //        else {
-        //            rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
-        //        }
-        //    }
-        //    //animation(rectSourceSprite);
+            }
+            if (up) {
+                 rectSourceSprite.top = 0;
+                 rectSourceSprite.left = 77;
+                 /*if (rectSourceSprite.top == 99) {
+                     rectSourceSprite.top = 68;
+                 }
+                 else {
+                     rectSourceSprite.top += 93;
+                     rectSourceSprite.left -= 30;
+                 }*/
+                 }
+            if (right) {
+                rectSourceSprite.top = 0;
+                rectSourceSprite.left = 77;
+                if (rectSourceSprite.top == 99) {
+                    rectSourceSprite.top = 68;
+                }
+                else {
+                    rectSourceSprite.top += 31;
+                }
+            }
+            if (left) {
+                rectSourceSprite.top = 0;
+                rectSourceSprite.left = 77;
+                if (rectSourceSprite.top == 99) {
+                    rectSourceSprite.top = 68;
+                }
+                else {
+                    rectSourceSprite.top += 31;
+                }
+                //    //animation(rectSourceSprite);
+
+            }
+
             perso.setTextureRect(rectSourceSprite); // Donne la nouvelle position a perso
             clock.restart(); // Restart clock...?
         }
-       
-       
 
-        window.clear();
-        window.draw(bg);
-        window.draw(perso);
-        window.display();
+            
+
+            window.clear();
+            window.draw(bg);
+            window.draw(perso);
+            window.display();
+        }
+
+        return 0;
     }
-
-    return 0;
-}
