@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "sprite.hpp"
 
 manage_window::manage_window() : window(sf::VideoMode(800, 600), "Pokemon")
 {
@@ -11,6 +12,7 @@ bool manage_window::isOpen(void) const
 }
 
 void manage_window::manage_event(void)
+
 {
     sf::Event evt;
     while (this->window.pollEvent(evt))
@@ -23,10 +25,22 @@ void manage_window::manage_event(void)
 void open_close_window()
 {
     manage_window w;
+    //Sprite background;
+
+
+    sf::Music music;
+
+    if (!music.openFromFile("song.ogg"))
+        throw;
+    else
+        std::cout << "trouve" << std::endl;
+    music.setLoop(true);
+    music.play();
 
     while (w.isOpen())
     {
         w.clear_window();
+        //background.display_background();
         w.manage_event();
         w.display_window();
     }
@@ -46,9 +60,4 @@ void manage_window::display_window(void)
 
 /*void sound()
 {
-    sf::Music music;
-
-    music.openFromFile("song.ogg");
-    music.setLoop(true);
-    music.play();
 }*/
