@@ -26,15 +26,36 @@ int main(int argc, char** argv)
     view.setViewport(sf::FloatRect(0, 0, 1.f, 1.f));
 
     sf::Texture texture_Perso;
-    sf::Texture texture_Background;
     texture_Perso.loadFromFile("persoo.PNG"); // Charge l'image dans "texture"
     sf::IntRect rectSourceSprite(77, 37, 25, 32); // Position du perso dans l'image Sprite.jpg -> IntRect(77, 37, 25, 3)
     sf::Sprite perso(texture_Perso, rectSourceSprite); // Créer le perso lui applique la texture et le IntRect
+    perso.setScale(3, 4); // Taille de perso
+    perso.setPosition(1015, 1600); // Position du sprite au départ
+    const float speed = 1500.f;
+
+    sf::Texture texture_Background;
     texture_Background.loadFromFile("map.PNG"); // Charge l'image dans "texture"
     sf::Sprite bg;
     bg.setTexture(texture_Background);
     bg.setScale(5,5); // Taille de perso
-    perso.setPosition(1015, 1600); // Position du sprite au départ
+
+    sf::Texture texture_Dealo;
+    texture_Dealo.loadFromFile("dealer.PNG"); // Charge l'image dans "texture"
+    sf::IntRect rectDealo(10, 0, 120, 140); // Position du perso dans l'image Sprite.jpg -> IntRect(77, 37, 25, 3)
+    sf::Sprite dealo(texture_Dealo,rectDealo);
+    dealo.setScale(0.7, 0.9); // Taille de perso
+    dealo.setPosition(2735, 2530); // Position du sprite au départ
+
+    sf::Texture texture_Join;
+    texture_Join.loadFromFile("join.PNG"); // Charge l'image dans "texture"
+    //sf::IntRect rectJoin(10, 0, 120, 140); // Position du perso dans l'image Sprite.jpg -> IntRect(77, 37, 25, 3)
+    sf::Sprite join(texture_Join);
+    join.setScale(0.3, 0.3); // Taille de perso
+    join.setRotation(-25.f);
+    join.setPosition(2735, 2600); // Position du sprite au départ
+
+
+
 
     bool up = false;
     bool left = false;
@@ -47,7 +68,6 @@ int main(int argc, char** argv)
     sf::Clock lap; // Boucle pour déplacement
     sf::Event event; // Var temporaire pour event
 
-    perso.setScale(3, 4); // Taille de perso
 
     while (window.isOpen()) // Boucle pour maintenir la fenetre ouverte
     {
@@ -56,7 +76,6 @@ int main(int argc, char** argv)
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        const float speed = 200.f;
       
 
         if (clock.getElapsedTime().asSeconds() > 0.2f) { // Boucle d'animations
@@ -106,6 +125,7 @@ int main(int argc, char** argv)
                     //animation(rectSourceSprite);
 
             }
+            
 
             perso.setTextureRect(rectSourceSprite); // Donne la nouvelle position a perso
             clock.restart(); // Restart clock...?
@@ -120,8 +140,15 @@ int main(int argc, char** argv)
 
         float posX = perso.getPosition().x;
         float posY = perso.getPosition().y;
-
         view.setCenter(posX, posY);
+
+        //if (posX > 1200/*posX < 1050 && posX > 1000 && posY < 1560 && posY > 1580*/) {
+            //while (lap.getElapsedTime().asSeconds() < 0.9f) {
+                //view.rotate(0.1f);
+                
+
+            //}
+        //}
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) // Event fleche droite appuyé
         {
@@ -186,6 +213,8 @@ int main(int argc, char** argv)
         window.setView(view);
         window.draw(bg);
         window.draw(perso);
+        window.draw(dealo);
+        window.draw(join);
         window.display();
 
     }
