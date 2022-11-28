@@ -2,7 +2,7 @@
 #include "song.hpp"
 #include "sprite.hpp"
 
-manage_window::manage_window() : window(sf::VideoMode(800, 600), "Pokemon")
+manage_window::manage_window() : window(sf::VideoMode(960, 720), "Pokemon")
 {
 
 }
@@ -34,15 +34,13 @@ void manage_window::display_window(void)
 
 void manage_window::open_close_window()
 {
-    manage_sprite background("background.jpg", sf::IntRect(0, 0, 800, 600));
-    manage_sprite perso("persoo.png", sf::IntRect(0, 0, 800, 600));
+    manage_sprite background("ecran_titre.png", sf::IntRect(0, 0, 320, 240), 3, 3);
     Musique m;
     m.song_menu_principal();
     while (isOpen())
     {
         clear_window();
         this->window.draw(background.get_sprite());
-        this->window.draw(perso.get_sprite());
         manage_event();
         display_window();
     }

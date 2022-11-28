@@ -15,9 +15,8 @@ private:
     sf::Sprite sprite;
     sf::IntRect rect;
 public:
-    manage_sprite(std::string file, sf::IntRect rect);
+    manage_sprite(std::string file, sf::IntRect rect, int x, int y);
 
     sf::Sprite &get_sprite();
     const sf::Sprite& get_sprite() const;
-    void sprite_animation();
 };
