@@ -13,6 +13,5 @@ public:
 	void manage_event(void);
 	void display_window(void);
 	void clear_window(void);
+	void open_close_window();
 };
-
-void open_close_window();

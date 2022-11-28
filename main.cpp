@@ -2,6 +2,8 @@
 
 int main()
 {
-    open_close_window();
+    manage_window window;
+
+    window.open_close_window();
     return 0;
 }

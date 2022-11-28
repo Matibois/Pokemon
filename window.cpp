@@ -1,5 +1,6 @@
 #include "window.hpp"
 #include "song.hpp"
+#include "sprite.hpp"
 
 manage_window::manage_window() : window(sf::VideoMode(800, 600), "Pokemon")
 {
@@ -12,7 +13,6 @@ bool manage_window::isOpen(void) const
 }
 
 void manage_window::manage_event(void)
-
 {
     sf::Event evt;
     while (this->window.pollEvent(evt))
@@ -25,7 +25,6 @@ void manage_window::manage_event(void)
 void manage_window::clear_window(void)
 {
     this->window.clear();
-    sf::Color::Black;
 }
 
 void manage_window::display_window(void)
@@ -33,16 +32,17 @@ void manage_window::display_window(void)
     this->window.display();
 }
 
-void open_close_window()
+void manage_window::open_close_window()
 {
-    manage_window w;
+    manage_sprite s;
     Musique m;
 
     m.song_menu_principal();
-    while (w.isOpen())
+    while (isOpen())
     {
-        w.clear_window();
-        w.manage_event();
-        w.display_window();
+        clear_window();
+        this->window.draw(s.get_sprite());
+        manage_event();
+        display_window();
     }
 }

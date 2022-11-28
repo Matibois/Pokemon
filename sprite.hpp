@@ -2,7 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
-class Sprite
+
+class manage_sprite
 {
 private:
     sf::Event event;
@@ -10,7 +11,8 @@ private:
     sf::Sprite sprite;
     sf::IntRect rect;
 public:
-    void display_background();
-}; 
+    manage_sprite();
 
-
+    sf::Sprite &get_sprite();
+    const sf::Sprite& get_sprite() const;
+};
