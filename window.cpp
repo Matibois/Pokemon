@@ -2,6 +2,11 @@
 #include "song.hpp"
 #include "sprite.hpp"
 
+bool up = false;
+bool left = false;
+bool right = false;
+bool down = false;
+
 manage_window::manage_window() : window(sf::VideoMode(960, 720), "Pokemon")
 {
 
@@ -34,10 +39,6 @@ void manage_window::display_window(void)
 
 void manage_window::open_close_window()
 {
-    bool up = false;
-    bool left = false;
-    bool right = false;
-    bool down = false;
     sf::Clock clock;
     sf::Clock lap;
     sf::Event event;
@@ -45,7 +46,6 @@ void manage_window::open_close_window()
     texture_Background.loadFromFile("map.PNG");
     sf::Sprite background(texture_Background);
     background.setScale(5, 5);
-    //manage_sprite background("map.png", sf::IntRect(0, 0, 0, 0), 5, 5, 0, 0);
     sf::Texture texture_Perso;
     texture_Perso.loadFromFile("persoo.PNG");
     sf::IntRect rectSourceSprite(77, 37, 25, 32);
@@ -186,10 +186,8 @@ void manage_window::open_close_window()
         clear_window();
         this->window.setView(view);
         this->window.draw(background);
-        //this->window.draw(background.get_sprite());
         this->window.draw(dealer.get_sprite());
         this->window.draw(perso);
-        //this->window.draw(background.get_sprite());
         manage_event();
         display_window();
     }
