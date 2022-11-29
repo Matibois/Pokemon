@@ -10,12 +10,11 @@
 class manage_sprite
 {
 private:
-    sf::Event event;
     sf::Texture texture;
     sf::Sprite sprite;
     sf::IntRect rect;
 public:
-    manage_sprite(std::string file, sf::IntRect rect, int x, int y);
+    manage_sprite(std::string file, sf::IntRect rect, double x, double y, float posx, float posy);
 
     sf::Sprite &get_sprite();
     const sf::Sprite& get_sprite() const;
