@@ -3,70 +3,72 @@
 #include <chrono>
 #include <iostream>
 #include <cstdbool>
-#include "Sprite.h"
 
-//void move(sf::IntRect rectSourceSprite) {
-//
-//
-//    if (rectSourceSprite.top > 90) {
-//        rectSourceSprite.top = 37;  // InteRect de base, perso original
-//    }
-//    else if (rectSourceSprite.top == 68) { // Si il a fait un pas alors en fait un deuxieme
-//        rectSourceSprite.top += 32;
-//    }
-//    else {
-//        rectSourceSprite.top += 31; // Change le IntRect pour que perso change de "skin" et face un pas
-//    }
-//}
 
 int main(int argc, char** argv)
 {
-    sf::RenderWindow window(sf::VideoMode(960, 720), "Pokemon Stone"); // Création 
+    sf::RenderWindow window(sf::VideoMode(960, 720), "Pokemon Stone"); 
     sf::View view;
     view.setViewport(sf::FloatRect(0, 0, 1.f, 1.f));
 
+    // -----------------------------------------Sprite du personnage jouable------------------------------
     sf::Texture texture_Perso;
-    texture_Perso.loadFromFile("persoo.PNG"); // Charge l'image dans "texture"
-    sf::IntRect rectSourceSprite(77, 37, 25, 32); // Position du perso dans l'image Sprite.jpg -> IntRect(77, 37, 25, 3)
+    texture_Perso.loadFromFile("persoo.PNG"); 
+    sf::IntRect rectSourceSprite(77, 37, 25, 32); // Position du perso dans l'image persoo.png -> IntRect(77, 37, 25, 3)
     sf::Sprite perso(texture_Perso, rectSourceSprite); // Créer le perso lui applique la texture et le IntRect
     perso.setScale(3, 4); // Taille de perso
     perso.setPosition(1015, 1600); // Position du sprite au départ
-    const float speed = 1500.f;
+    const float speed = 1500.f; // Vitesse de déplacement du perso
 
+    // -----------------------------------------Sprite de la map------------------------------
     sf::Texture texture_Background;
-    texture_Background.loadFromFile("map.PNG"); // Charge l'image dans "texture"
-    sf::Sprite bg;
-    bg.setTexture(texture_Background);
-    bg.setScale(5,5); // Taille de perso
+    texture_Background.loadFromFile("map.PNG"); 
+    sf::Sprite bg(texture_Background);
+    bg.setScale(5,5); 
 
+    // -----------------------------------------Sprite du Dealer------------------------------
     sf::Texture texture_Dealo;
-    texture_Dealo.loadFromFile("dealer.PNG"); // Charge l'image dans "texture"
-    sf::IntRect rectDealo(10, 0, 120, 140); // Position du perso dans l'image Sprite.jpg -> IntRect(77, 37, 25, 3)
+    texture_Dealo.loadFromFile("dealer.PNG"); 
+    sf::IntRect rectDealo(10, 0, 120, 140); 
     sf::Sprite dealo(texture_Dealo,rectDealo);
-    dealo.setScale(0.7, 0.9); // Taille de perso
-    dealo.setPosition(2735, 2530); // Position du sprite au départ
+    dealo.setScale(0.7, 0.9); 
+    dealo.setPosition(2735, 2530);
 
+    // -----------------------------------------Sprite du join------------------------------
     sf::Texture texture_Join;
-    texture_Join.loadFromFile("join.PNG"); // Charge l'image dans "texture"
-    //sf::IntRect rectJoin(10, 0, 120, 140); // Position du perso dans l'image Sprite.jpg -> IntRect(77, 37, 25, 3)
+    texture_Join.loadFromFile("join.PNG"); 
     sf::Sprite join(texture_Join);
-    join.setScale(0.3, 0.3); // Taille de perso
+    join.setScale(0.3, 0.3); 
     join.setRotation(-25.f);
-    join.setPosition(2735, 2600); // Position du sprite au départ
+    join.setPosition(2735, 2600); 
 
-
-
-
+    // -----------------------------------------Bool pour deplacement---------------------------------------
     bool up = false;
     bool left = false;
     bool right = false;
     bool down = false;
 
-    sf::IntRect* rect;
-    rect = &rectSourceSprite;
+
     sf::Clock clock; // Boucle pour animation
     sf::Clock lap; // Boucle pour déplacement
     sf::Event event; // Var temporaire pour event
+
+    // -----------------------------------------------Texte----------------------------------------------
+    sf::Text Intro;
+    sf::Text Deal;
+    sf::Font police;
+    police.loadFromFile("police.ttf");
+
+    Intro.setFont(police);
+    // set the string to display
+    Intro.setString("Hello world");
+    // set the character size
+    Intro.setCharacterSize(240); // in pixels, not points!
+    // set the color
+    Intro.setFillColor(sf::Color::Red);
+    // set the text style
+    Intro.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
 
 
     while (window.isOpen()) // Boucle pour maintenir la fenetre ouverte
@@ -76,7 +78,6 @@ int main(int argc, char** argv)
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-      
 
         if (clock.getElapsedTime().asSeconds() > 0.2f) { // Boucle d'animations
            
@@ -93,7 +94,7 @@ int main(int argc, char** argv)
             }
             if (up) {
 
-                if (rectSourceSprite.top == 4 && rectSourceSprite.left == 77) { // Si il a fait un pas alors en fait un deuxieme
+                if (rectSourceSprite.top == 4 && rectSourceSprite.left == 77) { 
                     rectSourceSprite.top = 100;
                     rectSourceSprite.left = 45;
                 }
@@ -104,7 +105,7 @@ int main(int argc, char** argv)
             }
             if (right) {
 
-                if (rectSourceSprite.top == 68 && rectSourceSprite.left == 45) { // Si il a fait un pas alors en fait un deuxieme
+                if (rectSourceSprite.top == 68 && rectSourceSprite.left == 45) { 
                     rectSourceSprite.top = 36;
                     rectSourceSprite.left = 45;
                 }
@@ -115,14 +116,14 @@ int main(int argc, char** argv)
             }
             if (left) {
 
-                if (rectSourceSprite.top == 100 && rectSourceSprite.left == 11) { // Si il a fait un pas alors en fait un deuxieme
+                if (rectSourceSprite.top == 100 && rectSourceSprite.left == 11) { 
                     rectSourceSprite.top = 36;
                 }
                 else {
                     rectSourceSprite.top = 100;
                     rectSourceSprite.left = 11;
                 }
-                    //animation(rectSourceSprite);
+                    
 
             }
             
@@ -142,13 +143,29 @@ int main(int argc, char** argv)
         float posY = perso.getPosition().y;
         view.setCenter(posX, posY);
 
+        if (perso.getPosition().x < 500) {
+            perso.setPosition(500, posY);
+        }
+        else if (perso.getPosition().x > 3500) {
+            perso.setPosition(3500, posY);
+        }
+        else if (perso.getPosition().y < 500) {
+            perso.setPosition(posX, 500);
+        }
+        else if (perso.getPosition().y > 3000) {
+            perso.setPosition(posX, 3000);
+        }
         //if (posX > 1200/*posX < 1050 && posX > 1000 && posY < 1560 && posY > 1580*/) {
             //while (lap.getElapsedTime().asSeconds() < 0.9f) {
                 //view.rotate(0.1f);
-                
+           
 
             //}
         //}
+        if (perso.getPosition().y > 2000) {
+            Intro.setString("");
+            //window.draw(Intro);
+        }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) // Event fleche droite appuyé
         {
@@ -212,9 +229,10 @@ int main(int argc, char** argv)
         window.clear();
         window.setView(view);
         window.draw(bg);
-        window.draw(perso);
-        window.draw(dealo);
         window.draw(join);
+        window.draw(dealo);
+        window.draw(perso);
+        window.draw(Intro);
         window.display();
 
     }
