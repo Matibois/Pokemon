@@ -60,10 +60,10 @@ void manage_window::open_close_window()
     m.song_menu_principal();
     while (isOpen())
     {
-        while (window.pollEvent(event))
+        while (this->window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window.close();
+                this->window.close();
         }
 
         if (clock.getElapsedTime().asSeconds() > 0.2f) {

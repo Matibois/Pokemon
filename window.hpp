@@ -14,4 +14,5 @@ public:
 	void display_window(void);
 	void clear_window(void);
 	void open_close_window();
+	void menu_create();
 };
