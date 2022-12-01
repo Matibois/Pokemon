@@ -71,6 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\Juju\SFML-2.5.1\include\SFML;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Juju\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -104,15 +106,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories></AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Juju\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Juju\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -133,11 +135,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="song.cpp" />
+    <ClCompile Include="sprite.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="menu.hpp" />
     <ClInclude Include="song.hpp" />
+    <ClInclude Include="sprite.hpp" />
     <ClInclude Include="window.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +158,23 @@
     <None Include="sfml-window-2.dll" />
     <None Include="sfml-window-d-2.dll" />
     <None Include="song.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="background.jpg" />
+    <Image Include="credits.png" />
+    <Image Include="dealer.png" />
+    <Image Include="ecran_titre.png" />
+    <Image Include="map.png" />
+    <Image Include="Menu.png" />
+    <Image Include="persoo.png" />
+    <Image Include="scene_combat.png" />
+    <Image Include="settings.png" />
+    <Image Include="sprite_combat.png" />
+    <Image Include="terrain_combat.png" />
+    <Image Include="zone_texte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="PKM_font.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

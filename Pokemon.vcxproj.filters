@@ -24,6 +24,12 @@
     <ClCompile Include="song.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="sprite.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window.hpp">
@@ -32,11 +38,14 @@
     <ClInclude Include="song.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="sprite.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="song.ogg">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
     <None Include="sfml-window-d-2.dll" />
     <None Include="sfml-audio-2.dll" />
     <None Include="sfml-audio-d-2.dll" />
@@ -47,5 +56,51 @@
     <None Include="sfml-system-2.dll" />
     <None Include="sfml-system-d-2.dll" />
     <None Include="sfml-window-2.dll" />
+    <None Include="song.ogg">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="background.jpg">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="persoo.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ecran_titre.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="map.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="dealer.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Menu.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="credits.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="scene_combat.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="settings.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="terrain_combat.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="sprite_combat.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="zone_texte.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="PKM_font.ttf">
+      <Filter>Fichiers de ressources</Filter>
+    </Font>
   </ItemGroup>
 </Project>
