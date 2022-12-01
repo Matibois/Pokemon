@@ -45,9 +45,7 @@ void manage_window::display_window(void)
 
 void manage_window::open_close_window()
 {
-    sf::Clock clock;
     sf::Clock lap;
-    sf::Event event;
     sf::Texture texture_Background;
     texture_Background.loadFromFile("map.png");
     sf::Sprite background(texture_Background);
@@ -68,11 +66,9 @@ void manage_window::open_close_window()
     sf::Sprite start(texture_Start);
     start.setScale(3, 3);
     manage_sprite dealer("dealer.png", sf::IntRect(0, 0, 120, 140), 0.7, 0.9, 2735, 2530);
-    sf::View view;
     view.setViewport(sf::FloatRect(0, 0, 1.f, 1.f));
     const float speed = 1500.f;
     int dealtxt = 1;
-    bool next = false;
     sf::Text Deal;
     sf::Font police;
     police.loadFromFile("PKM_font.ttf");
@@ -86,10 +82,10 @@ void manage_window::open_close_window()
     Deal2.setString("Non");
     Deal2.setCharacterSize(50);
     Deal2.setFillColor(sf::Color::White);
-    Deal2.setPosition(2320, 2950);
     sf::Text Deal3;
     Deal3.setFont(police);
     Deal3.setString("ok");
+    Deal2.setPosition(2320, 2950);
     Deal3.setCharacterSize(50);
     Deal3.setFillColor(sf::Color::White);
     Deal3.setPosition(2320, 2950);
@@ -183,7 +179,7 @@ void manage_window::open_close_window()
     while (isOpen())
     {
         if (menu) {
-            if (clock.getElapsedTime().asSeconds() > 0.4f) {
+            if (this->clock.getElapsedTime().asSeconds() > 0.4f) {
                 if (rectStart.left == 0) {
                     rectStart.left = 320;
                 }
@@ -193,14 +189,14 @@ void manage_window::open_close_window()
                 start.setTextureRect(rectStart);
                 clock.restart();
             }
-            if (this->window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed)
+            if (this->window.pollEvent(this->event)) {
+                if (this->event.type == this->event.Closed)
                     this->window.close();
-                if (event.type == sf::Event::KeyPressed) {
+                if (this->event.type == this->event.KeyPressed) {
 
                     menu = false;
                     jeu = true;
-                    this->window.setView(view);
+                    this->window.setView(this->view);
 
                 }
             }
@@ -209,7 +205,7 @@ void manage_window::open_close_window()
             this->window.display();
         }
         if (jeu) {
-            if (clock.getElapsedTime().asSeconds() > 0.2f) {
+            if (this->clock.getElapsedTime().asSeconds() > 0.2f) {
                 if (down) {
                     if (rectSourceSprite.top == 68 && rectSourceSprite.left == 77) {
                         rectSourceSprite.top = 100;
@@ -249,11 +245,11 @@ void manage_window::open_close_window()
                     }
                 }
                 perso.setTextureRect(rectSourceSprite);
-                clock.restart();
+                this->clock.restart();
             }
             float time;
             if (lap.getElapsedTime().asSeconds() > 0.1f) {
-                clock.restart();
+                this->clock.restart();
             }
             time = lap.restart().asSeconds();
             float posX = perso.getPosition().x;
@@ -307,38 +303,38 @@ void manage_window::open_close_window()
                 left = false;
                 perso.move(0.f, speed * time);
             }
-            else if (sf::Event::KeyReleased) {
-                if (event.key.code == sf::Keyboard::Left) {
+            else if (this->event.KeyReleased) {
+                if (this->event.key.code == sf::Keyboard::Left) {
                     left = false;
                     rectSourceSprite.left = 11;
                     rectSourceSprite.top = 68;
                 }
-                if (event.key.code == sf::Keyboard::Right) {
+                if (this->event.key.code == sf::Keyboard::Right) {
                     right = false;
                     rectSourceSprite.left = 45;
                     rectSourceSprite.top = 4;
                 }
-                if (event.key.code == sf::Keyboard::Up) {
+                if (this->event.key.code == sf::Keyboard::Up) {
                     up = false;
                     rectSourceSprite.left = 11;
                     rectSourceSprite.top = 4;
                 }
-                if (event.key.code == sf::Keyboard::Down) {
+                if (this->event.key.code == sf::Keyboard::Down) {
                     down = false;
                     rectSourceSprite.left = 77;
                     rectSourceSprite.top = 37;
                 }
-                while (this->window.pollEvent(event)) {
-                    if (event.type == sf::Event::Closed) {
+                while (this->window.pollEvent(this->event)) {
+                    if (this->event.type == this->event.Closed) {
                         this->window.close();
                     }
-                    if (event.type == sf::Event::KeyPressed) {
-                        if (event.key.code == sf::Keyboard::Escape) {
+                    if (this->event.type == this->event.KeyPressed) {
+                        if (this->event.key.code == sf::Keyboard::Escape) {
                             menu_create();
                         }
                     }
                     if (next) {
-                        if (event.type == sf::Event::KeyPressed) {
+                        if (this->event.type == this->event.KeyPressed) {
                             jeu = false;
                             dialogue = true;
 
@@ -347,7 +343,7 @@ void manage_window::open_close_window()
                 }
             }
             clear_window();
-            this->window.setView(view);
+            this->window.setView(this->view);
             this->window.draw(background);
             this->window.draw(dealer.get_sprite());
             this->window.draw(perso);
@@ -356,7 +352,7 @@ void manage_window::open_close_window()
         }
         if (dialogue) {
             this->window.clear();
-            this->window.setView(view);
+            this->window.setView(this->view);
             this->window.draw(background);
             this->window.draw(dealer.get_sprite());
             this->window.draw(perso);
@@ -372,8 +368,8 @@ void manage_window::open_close_window()
                 this->window.draw(box);
                 this->window.draw(Deal3);
             }
-            if (this->window.pollEvent(event)) {
-                if (event.type == sf::Event::KeyPressed) {
+            if (this->window.pollEvent(this->event)) {
+                if (this->event.type == this->event.KeyPressed) {
                     if (dealtxt == 1) {
                         dealtxt++;
                     }
@@ -385,7 +381,7 @@ void manage_window::open_close_window()
                         dialogue = false;
                     }
                 }
-                if (event.type == sf::Event::Closed) {
+                if (this->event.type == this->event.Closed) {
                     this->window.close();
                 }
             }
