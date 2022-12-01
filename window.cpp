@@ -199,8 +199,6 @@ void manage_window::open_close_window()
                 rectSourceSprite.top = 4;
                 perso.setTextureRect(rectSourceSprite);
                 next = true;
-
-
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 right = true;
@@ -283,16 +281,6 @@ void manage_window::open_close_window()
             this->window.draw(background);
             this->window.draw(dealer.get_sprite());
             this->window.draw(perso);
-
-            /*rectDealo.left = 20;
-            rectDealo.top = 0;
-            rectDealo.width = 120;
-            rectDealo.height = 80;*/
-            //view.setCenter(2742, 2600);
-            //dealo.setTextureRect(rectDealo);
-            //dealo.setScale(11, 11);
-            //dealo.setPosition(2100, 2100);
-
             if (dealtxt == 1) {
                 this->window.draw(box);
                 this->window.draw(Deal);
@@ -317,20 +305,12 @@ void manage_window::open_close_window()
                         jeu = false;
                         combat = true;
                     }
-
-
                 }
-
                 if (event.type == sf::Event::Closed) {
                     this->window.close();
                 }
-
             }
-
-
             this->window.display();
-
         }
-
     }
 }
