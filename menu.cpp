@@ -64,13 +64,15 @@ void MainMenu::MoveDown() {
 		{
 			MainMenuSelected = 0;
 		}
+
 		mainMenu[MainMenuSelected].setFillColor(Color::Green);
 	}
 }
 
 void manage_window::menu_create()
 {
-	MainMenu mainMenu(window.getSize().x, window.getSize().y);
+	RenderWindow MENU(VideoMode(960, 720), "Main Menu", Style::Default);
+	MainMenu mainMenu(MENU.getSize().x, MENU.getSize().y);
 
 	RectangleShape background;
 	background.setSize(Vector2f(960, 720));
@@ -87,7 +89,7 @@ void manage_window::menu_create()
 	RectangleShape Sbackground;
 	Sbackground.setSize(Vector2f(960, 720));
 	Texture settings_texture;
-	settings_texture.loadFromFile("");
+	settings_texture.loadFromFile("settings.png");
 	Sbackground.setTexture(&settings_texture);
 
 	RectangleShape Cbackground;
@@ -96,14 +98,14 @@ void manage_window::menu_create()
 	credits_texture.loadFromFile("credits.png");
 	Cbackground.setTexture(&credits_texture);
 
-	while (window.isOpen())
+	while (MENU.isOpen())
 	{
 		Event event;
-		while (window.pollEvent(event))
+		while (MENU.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 			{
-				window.close();
+				MENU.close();
 			}
 
 			if (event.type == Event::KeyPressed)
@@ -119,33 +121,34 @@ void manage_window::menu_create()
 					break;
 				}
 				if (event.key.code == Keyboard::Return) {
+					RenderWindow Play(VideoMode(960, 720), "PKM_stone");
 					RenderWindow Settings(VideoMode(960, 720), "Settings");
 					RenderWindow Credits(VideoMode(960, 720), "Credits");
 
 					int x = mainMenu.MainMenuPressed();
 					if (x == 0)
 					{
-						while (window.isOpen())
+						while (Play.isOpen())
 						{
 							Event aevent;
-							while (window.pollEvent(aevent)) {
+							while (Play.pollEvent(aevent)) {
 								if (aevent.type == Event::Closed)
 								{
-									window.close();
+									Play.close();
 								}
 								if (aevent.type == Event::KeyPressed)
 								{
 									if (aevent.key.code == Keyboard::Escape)
 									{
-										window.close();
+										Play.close();
 									}
 								}
 							}
 							Settings.close();
 							Credits.close();
-							window.clear();
-							open_close_window();
-							window.display();
+							Play.clear();
+							Play.draw(Pbackground);
+							Play.display();
 						}
 					}
 					if (x == 1)
@@ -166,10 +169,11 @@ void manage_window::menu_create()
 									}
 								}
 							}
-							window.close();
+							Play.close();
+							Credits.close();
 							Settings.clear();
 							Settings.draw(Sbackground);
-							Credits.clear();
+
 							Settings.display();
 						}
 					}
@@ -189,7 +193,7 @@ void manage_window::menu_create()
 									}
 								}
 							}
-							window.close();
+							Play.close();
 							Settings.clear();
 							Credits.clear();
 							Credits.draw(Cbackground);
@@ -197,15 +201,15 @@ void manage_window::menu_create()
 						}
 					}
 					if (x == 3)
-						window.close();
+						MENU.close();
 					break;
 
 				}
 			}
 		}
-		window.clear();
-		window.draw(background);
-		mainMenu.draw(window);
-		window.display();
+		MENU.clear();
+		MENU.draw(background);
+		mainMenu.draw(MENU);
+		MENU.display();
 	}
 }

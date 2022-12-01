@@ -4,7 +4,7 @@
 
 int main()
 {
-    manage_window m;
-    m.menu_create();
-    return 0;
+	manage_window w;
+	w.open_close_window();
+	return 0;
 }

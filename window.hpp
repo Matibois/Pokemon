@@ -7,6 +7,7 @@ class manage_window
 {
 private:
 	sf::RenderWindow window;
+	sf::Event evt;
 public:
 	manage_window(void);
 	bool isOpen(void) const;
