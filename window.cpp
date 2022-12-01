@@ -70,6 +70,12 @@ void manage_window::open_close_window()
     manage_sprite dealer("dealer.png", sf::IntRect(0, 0, 120, 140), 0.7, 0.9, 2735, 2530);
     sf::View view;
     view.setViewport(sf::FloatRect(0, 0, 1.f, 1.f));
+    sf::Texture texture_mystherbe;
+    texture_mystherbe.loadFromFile("mystbeuh.PNG");
+    sf::Sprite mystherbe(texture_mystherbe);
+    mystherbe.setPosition(-55, 100);
+    mystherbe.setScale(1.5, 1.5);
+
     const float speed = 1500.f;
     int dealtxt = 1;
     bool next = false;
@@ -102,7 +108,7 @@ void manage_window::open_close_window()
 
     sf::Texture texture_Bgc;
     texture_Bgc.loadFromFile("terrain_combat.png");
-    sf::IntRect rectBgc(0, 0, 320, 240);
+    sf::IntRect rectBgc(320, 0, 320, 240);
     sf::Sprite bgc(texture_Bgc, rectBgc);
     bgc.setPosition(-200, -200);
     bgc.setScale(3, 3);
@@ -139,7 +145,7 @@ void manage_window::open_close_window()
     text_debut.setFont(police);
     text_debut.setString("Qu'est-ce que\nMystherbe doit faire ?");
     text_debut.setCharacterSize(35);
-    text_debut.setPosition(30, 615);
+    text_debut.setPosition(-130, 415);
 
     text_attaque.setFont(police);
     text_attaque.setString("C'est super efficace !");
@@ -434,6 +440,7 @@ void manage_window::open_close_window()
             window.draw(Svie_zero);
             window.draw(text_attaque);
             window.draw(text_debut);
+            window.draw(mystherbe);
 
 
 
