@@ -80,7 +80,7 @@ void manage_window::open_close_window()
     mystherbe.setPosition(-60, 240);
     mystherbe.setScale(1.8, 1.8);
 
-    const float speed = 1500.f;
+    const float speed = 700.f;
     int dealtxt = 1;
     bool next = false;
     sf::Text Deal;
