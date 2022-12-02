@@ -73,8 +73,8 @@ void manage_window::open_close_window()
     sf::Texture texture_mystherbe;
     texture_mystherbe.loadFromFile("mystbeuh.PNG");
     sf::Sprite mystherbe(texture_mystherbe);
-    mystherbe.setPosition(-55, 100);
-    mystherbe.setScale(1.5, 1.5);
+    mystherbe.setPosition(-60, 240);
+    mystherbe.setScale(1.8, 1.8);
 
     const float speed = 1500.f;
     int dealtxt = 1;
@@ -111,17 +111,17 @@ void manage_window::open_close_window()
     sf::IntRect rectBgc(320, 0, 320, 240);
     sf::Sprite bgc(texture_Bgc, rectBgc);
     bgc.setPosition(-200, -200);
-    bgc.setScale(3, 3);
+    bgc.setScale(3.12, 4.2);
 
 
     sf::Texture texture_Fleche;
     sf::Texture texture_Vie_Zero;
     //texture fleche
-    texture_Fleche.loadFromFile("fleche.png");
+    texture_Fleche.loadFromFile("fleche.PNG");
     sf::IntRect rect_fleche(0, 0, 26, 42);
     //sprite fleche view gauche
     sf::Sprite Sfleche_attaque(texture_Fleche, rect_fleche);
-    Sfleche_attaque.setPosition(30, 610);
+    Sfleche_attaque.setPosition(475, 667);
     //sprite fleche view droite
     sf::Sprite Sfleche_fight(texture_Fleche, rect_fleche);
     Sfleche_fight.setPosition(650, 615);
@@ -144,43 +144,43 @@ void manage_window::open_close_window()
 
     text_debut.setFont(police);
     text_debut.setString("Qu'est-ce que\nMystherbe doit faire ?");
-    text_debut.setCharacterSize(35);
-    text_debut.setPosition(-130, 415);
+    text_debut.setCharacterSize(40);
+    text_debut.setPosition(-160, 670);
 
     text_attaque.setFont(police);
     text_attaque.setString("C'est super efficace !");
-    text_attaque.setCharacterSize(35);
+    text_attaque.setCharacterSize(40);
     text_attaque.setFillColor(sf::Color::Black);
     text_attaque.setPosition(30, 615);
 
     //texte sur la view de gauche
     text_DERACINEMENT.setFont(police);
     text_DERACINEMENT.setString("DERACINEMENT");
-    text_DERACINEMENT.setCharacterSize(35);
+    text_DERACINEMENT.setCharacterSize(40);
     text_DERACINEMENT.setFillColor(sf::Color::Black);
     text_DERACINEMENT.setPosition(70, 610);
 
     text_TOXICO.setFont(police);
     text_TOXICO.setString("TOXICO");
-    text_TOXICO.setCharacterSize(35);
+    text_TOXICO.setCharacterSize(40);
     text_TOXICO.setFillColor(sf::Color::Black);
     text_TOXICO.setPosition(70, 660);
 
     text_BEDODO.setFont(police);
     text_BEDODO.setString("BEDODO");
-    text_BEDODO.setCharacterSize(35);
+    text_BEDODO.setCharacterSize(40);
     text_BEDODO.setFillColor(sf::Color::Black);
     text_BEDODO.setPosition(400, 610);
 
     text_RAILDECOCO.setFont(police);
     text_RAILDECOCO.setString("RAIL DE COCO");
-    text_RAILDECOCO.setCharacterSize(35);
+    text_RAILDECOCO.setCharacterSize(40);
     text_RAILDECOCO.setFillColor(sf::Color::Black);
     text_RAILDECOCO.setPosition(400, 660);
 
     text_attaque_DERACINEMENT.setFont(police);
     text_attaque_DERACINEMENT.setString("MYSTHERBE\nlance DERACINEMENT");
-    text_attaque_DERACINEMENT.setCharacterSize(35);
+    text_attaque_DERACINEMENT.setCharacterSize(40);
     text_attaque_DERACINEMENT.setFillColor(sf::Color::Black);
     text_attaque_DERACINEMENT.setPosition(30, 615);
 
@@ -400,36 +400,35 @@ void manage_window::open_close_window()
         if (combat) {
             view.setCenter(300, 300);
             window.setView(view);
-            if (window.pollEvent(event))                             // Event fermer la fenetre
+            if (window.pollEvent(event))                             
             {
                 if (event.type == sf::Event::Closed)
                     window.close();
 
             }
 
-            if (clock.getElapsedTime().asSeconds() > 0.6f) {            // Boucle d'animations
+            if (clock.getElapsedTime().asSeconds() > 0.6f) {           
 
                 if (rect_fleche.left > 0) {
-                    rect_fleche.left = 0;                                    // IntRect de base, perso original
+                    rect_fleche.left = 0;                                  
                 }
 
                 else {
-                    rect_fleche.left += 26;                                 // Change le IntRect pour que perso change de "skin" et face un pas
+                    rect_fleche.left += 26;                                
                 }
                 Sfleche_attaque.setTextureRect(rect_fleche);
                 Sfleche_fight.setTextureRect(rect_fleche);
 
-                clock.restart();                                        // Restart clock...?
+                clock.restart();                                        
             }
 
 
             window.clear();
 
             window.draw(bgc);
-            window.draw(text_debut);
+            /*window.draw(text_debut);
             window.draw(Sfleche_fight);
 
-            window.draw(Sfleche_attaque);
             window.draw(text_DERACINEMENT);
             window.draw(text_TOXICO);
             window.draw(text_BEDODO);
@@ -438,9 +437,10 @@ void manage_window::open_close_window()
             window.draw(text_attaque_DERACINEMENT);
 
             window.draw(Svie_zero);
-            window.draw(text_attaque);
+            window.draw(text_attaque);*/
             window.draw(text_debut);
             window.draw(mystherbe);
+            window.draw(Sfleche_attaque);
 
 
 
