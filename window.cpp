@@ -12,6 +12,10 @@ bool dialogue = false;
 bool combat = false;
 bool deplacement = true;
 bool next = false;
+bool attaque = false;
+bool choice = true;
+bool degat = false;
+bool fin = false;
 
 manage_window::manage_window() : window(sf::VideoMode(960, 720), "Pokemon")
 {
@@ -124,12 +128,12 @@ void manage_window::open_close_window()
     Sfleche_attaque.setPosition(475, 667);
     //sprite fleche view droite
     sf::Sprite Sfleche_fight(texture_Fleche, rect_fleche);
-    Sfleche_fight.setPosition(650, 615);
+    Sfleche_fight.setPosition(-160, 670);
     //vie zero
     texture_Vie_Zero.loadFromFile("vie_zero.png");
     sf::Sprite Svie_zero(texture_Vie_Zero);
-    Svie_zero.setPosition(240, 222);
-    Svie_zero.setScale(1.2, 0.20);
+    Svie_zero.setPosition(53, 112);
+    Svie_zero.setScale(1.22, 0.25);
 
     //text view droite
     sf::Text text_debut;
@@ -158,31 +162,31 @@ void manage_window::open_close_window()
     text_DERACINEMENT.setString("DERACINEMENT");
     text_DERACINEMENT.setCharacterSize(40);
     text_DERACINEMENT.setFillColor(sf::Color::Black);
-    text_DERACINEMENT.setPosition(-120, 665);
+    text_DERACINEMENT.setPosition(-140, 670);
 
     text_TOXICO.setFont(police);
     text_TOXICO.setString("TOXICO");
     text_TOXICO.setCharacterSize(40);
     text_TOXICO.setFillColor(sf::Color::Black);
-    text_TOXICO.setPosition(-120, 660);
+    text_TOXICO.setPosition(-140, 710);
 
     text_BEDODO.setFont(police);
     text_BEDODO.setString("BEDODO");
     text_BEDODO.setCharacterSize(40);
     text_BEDODO.setFillColor(sf::Color::Black);
-    text_BEDODO.setPosition(210, 610);
+    text_BEDODO.setPosition(210, 710);
 
     text_RAILDECOCO.setFont(police);
     text_RAILDECOCO.setString("RAIL DE COCO");
     text_RAILDECOCO.setCharacterSize(40);
     text_RAILDECOCO.setFillColor(sf::Color::Black);
-    text_RAILDECOCO.setPosition(210, 660);
+    text_RAILDECOCO.setPosition(210, 670);
 
     text_attaque_DERACINEMENT.setFont(police);
     text_attaque_DERACINEMENT.setString("MYSTHERBE\nlance DERACINEMENT");
     text_attaque_DERACINEMENT.setCharacterSize(40);
     text_attaque_DERACINEMENT.setFillColor(sf::Color::Black);
-    text_attaque_DERACINEMENT.setPosition(-160, 615);
+    text_attaque_DERACINEMENT.setPosition(-160, 690);
 
     Musique m;
     m.song_menu_principal();
@@ -402,53 +406,78 @@ void manage_window::open_close_window()
             window.setView(view);
 
             window.clear();
-
             window.draw(bgc);
+            window.draw(mystherbe);
+
+            if (choice) {
+                window.draw(text_debut);
+                window.draw(Sfleche_attaque);
+            }
+
             /*window.draw(text_debut);
             window.draw(Sfleche_fight);
 
 
-            window.draw(Svie_zero);
-            window.draw(text_attaque);*/
-            window.draw(text_debut);
-            window.draw(mystherbe);
-            window.draw(Sfleche_attaque);
 
-            if (window.pollEvent(event))                             
+            window.draw(text_attaque);*/
+
+
+            if (window.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed)
                     window.close();
 
                 if (event.type == sf::Event::KeyPressed) {
-                    if (event.key.code == sf::Keyboard::Enter) {
-                        std::cout << "oui ";
 
-                        window.draw(Sfleche_fight);
-                        window.draw(text_DERACINEMENT);
-                        window.draw(text_TOXICO);
-                        window.draw(text_BEDODO);
-                        window.draw(text_RAILDECOCO);
+                    if (event.key.code == sf::Keyboard::Enter && attaque == true) {
+                        degat = true;
+                        attaque = false;
+
+
                     }
+
+                    else if (event.key.code == sf::Keyboard::Enter) {
+                        attaque = true;
+                        choice = false;
+
+
+                    }
+
                 }
             }
+            if (attaque) {
+                rectBgc.left = 0;
+                bgc.setTextureRect(rectBgc);
+                window.draw(Sfleche_fight);
+                window.draw(text_DERACINEMENT);
+                window.draw(text_TOXICO);
+                window.draw(text_BEDODO);
+                window.draw(text_RAILDECOCO);
+            }
+            if (degat) {
+                window.draw(text_attaque);
+                window.draw(Svie_zero);
 
-            if (clock.getElapsedTime().asSeconds() > 0.6f) {           
+            }
+
+
+            if (clock.getElapsedTime().asSeconds() > 0.6f) {
 
                 if (rect_fleche.left > 0) {
-                    rect_fleche.left = 0;                                  
+                    rect_fleche.left = 0;
                 }
 
                 else {
-                    rect_fleche.left += 26;                                
+                    rect_fleche.left += 26;
                 }
                 Sfleche_attaque.setTextureRect(rect_fleche);
                 Sfleche_fight.setTextureRect(rect_fleche);
 
-                clock.restart();                                        
+                clock.restart();
             }
 
 
-            
+
 
 
 
