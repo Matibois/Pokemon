@@ -151,38 +151,38 @@ void manage_window::open_close_window()
     text_attaque.setString("C'est super efficace !");
     text_attaque.setCharacterSize(40);
     text_attaque.setFillColor(sf::Color::Black);
-    text_attaque.setPosition(30, 615);
+    text_attaque.setPosition(-160, 670);
 
     //texte sur la view de gauche
     text_DERACINEMENT.setFont(police);
     text_DERACINEMENT.setString("DERACINEMENT");
     text_DERACINEMENT.setCharacterSize(40);
     text_DERACINEMENT.setFillColor(sf::Color::Black);
-    text_DERACINEMENT.setPosition(70, 610);
+    text_DERACINEMENT.setPosition(-120, 665);
 
     text_TOXICO.setFont(police);
     text_TOXICO.setString("TOXICO");
     text_TOXICO.setCharacterSize(40);
     text_TOXICO.setFillColor(sf::Color::Black);
-    text_TOXICO.setPosition(70, 660);
+    text_TOXICO.setPosition(-120, 660);
 
     text_BEDODO.setFont(police);
     text_BEDODO.setString("BEDODO");
     text_BEDODO.setCharacterSize(40);
     text_BEDODO.setFillColor(sf::Color::Black);
-    text_BEDODO.setPosition(400, 610);
+    text_BEDODO.setPosition(210, 610);
 
     text_RAILDECOCO.setFont(police);
     text_RAILDECOCO.setString("RAIL DE COCO");
     text_RAILDECOCO.setCharacterSize(40);
     text_RAILDECOCO.setFillColor(sf::Color::Black);
-    text_RAILDECOCO.setPosition(400, 660);
+    text_RAILDECOCO.setPosition(210, 660);
 
     text_attaque_DERACINEMENT.setFont(police);
     text_attaque_DERACINEMENT.setString("MYSTHERBE\nlance DERACINEMENT");
     text_attaque_DERACINEMENT.setCharacterSize(40);
     text_attaque_DERACINEMENT.setFillColor(sf::Color::Black);
-    text_attaque_DERACINEMENT.setPosition(30, 615);
+    text_attaque_DERACINEMENT.setPosition(-160, 615);
 
     Musique m;
     m.song_menu_principal();
@@ -400,11 +400,36 @@ void manage_window::open_close_window()
         if (combat) {
             view.setCenter(300, 300);
             window.setView(view);
+
+            window.clear();
+
+            window.draw(bgc);
+            /*window.draw(text_debut);
+            window.draw(Sfleche_fight);
+
+
+            window.draw(Svie_zero);
+            window.draw(text_attaque);*/
+            window.draw(text_debut);
+            window.draw(mystherbe);
+            window.draw(Sfleche_attaque);
+
             if (window.pollEvent(event))                             
             {
                 if (event.type == sf::Event::Closed)
                     window.close();
 
+                if (event.type == sf::Event::KeyPressed) {
+                    if (event.key.code == sf::Keyboard::Enter) {
+                        std::cout << "oui ";
+
+                        window.draw(Sfleche_fight);
+                        window.draw(text_DERACINEMENT);
+                        window.draw(text_TOXICO);
+                        window.draw(text_BEDODO);
+                        window.draw(text_RAILDECOCO);
+                    }
+                }
             }
 
             if (clock.getElapsedTime().asSeconds() > 0.6f) {           
@@ -423,24 +448,7 @@ void manage_window::open_close_window()
             }
 
 
-            window.clear();
-
-            window.draw(bgc);
-            /*window.draw(text_debut);
-            window.draw(Sfleche_fight);
-
-            window.draw(text_DERACINEMENT);
-            window.draw(text_TOXICO);
-            window.draw(text_BEDODO);
-            window.draw(text_RAILDECOCO);
-
-            window.draw(text_attaque_DERACINEMENT);
-
-            window.draw(Svie_zero);
-            window.draw(text_attaque);*/
-            window.draw(text_debut);
-            window.draw(mystherbe);
-            window.draw(Sfleche_attaque);
+            
 
 
 
